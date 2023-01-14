@@ -3,12 +3,20 @@ terraform {
 
   required_providers {
     proxmox = {
-      source = "Telmate/proxmox"
+      source  = "Telmate/proxmox"
       version = "2.9.11"
     }
+  }
+
+  backend "s3" {
+    bucket         = "tigonguyen-homelab-tfstate"
+    key            = "terraform.tfstate"
+    region         = "ap-southeast-1"
+    encrypt        = true
+    dynamodb_table = "homelab-tfstate-lock"
   }
 }
 
 provider "proxmox" {
-  pm_api_url = "https://homelab.scienista.com/api2/json"
+  pm_api_url = "https://proxmox.scienista.com/api2/json"
 }
