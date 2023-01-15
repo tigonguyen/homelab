@@ -1,4 +1,4 @@
-# mini-homelab
+# homelab
 This repos contains my self-hosted kubernetes homelab.
 ## Todo
 - [x] Build up Proxmox Cluster on a single WorkStation node
