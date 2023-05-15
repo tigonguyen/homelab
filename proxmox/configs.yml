@@ -1,0 +1,10 @@
+tunnel: e5c01cbf-12ac-46e8-bf31-fa427d190a2a
+credentials-file: /root/.cloudflared/e5c01cbf-12ac-46e8-bf31-fa427d190a2a.json
+
+ingress:
+  - hostname: pve.scienista.com
+    service: https://localhost:8006
+    originRequest:
+       disableChunkedEncoding: true
+       noTLSVerify: true
+  - service: http_status:404
