@@ -8,3 +8,27 @@ ingress:
        disableChunkedEncoding: true
        noTLSVerify: true
   - service: http_status:404
+---
+# For SigNoz
+tunnel: a56c7f78-c2b2-4640-85f6-9b3f4b5b200f
+credentials-file: /home/tigonguyen/.cloudflared/a56c7f78-c2b2-4640-85f6-9b3f4b5b200f.json
+
+ingress:
+  - hostname: signoz.scienista.com
+    service: http://localhost:3301
+    originRequest:
+       disableChunkedEncoding: true
+       noTLSVerify: true
+  - service: http_status:404
+---
+# For Clickhouse
+tunnel: ce661925-e609-4010-8512-f38cdb048b1d
+credentials-file: /home/tigonguyen/.cloudflared/ce661925-e609-4010-8512-f38cdb048b1d.json
+
+ingress:
+  - hostname: clickhouse.scienista.com
+    service: http://localhost:8123
+    originRequest:
+       disableChunkedEncoding: true
+       noTLSVerify: true
+  - service: http_status:404
