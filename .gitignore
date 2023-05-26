@@ -34,3 +34,7 @@ override.tf.json
 terraform.rc
 
 *.terraform.lock.hcl
+
+# Ignore proxmox user credentials
+*/roles/*/defaults/main.yml
+*/inventory/hosts

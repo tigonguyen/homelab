@@ -1,0 +1,7 @@
+- name: Proxmox Initialization
+  hosts: proxmox
+  become: true
+  gather_facts: false
+
+  roles:
+    - proxmox_initialization

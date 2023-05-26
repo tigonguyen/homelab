@@ -1,0 +1,30 @@
+- name: Install required packages
+  apt:
+    name: python3-requests
+    state: present
+  become: true  # Enable privilege escalation for package installation
+  tags:
+    - createProxmoxUsers
+
+- name: Create Proxmox user
+  shell: >
+    pveum user add {{ item.username }} --password {{ item.password }}
+  args:
+    creates: /home/{{ item.username }}
+  register: create_user_result
+  ignore_errors: true
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+  tags:
+    - createProxmoxUsers
+
+- name: Grant Proxmox web interface access
+  shell: >
+    pveum acl modify /access -user {{ item.username }} -role {{ item.role }}
+  when: create_user_result.changed
+  loop: "{{ users }}"  # Loop through the list of users
+  loop_control:
+    loop_var: item
+  tags:
+    - createProxmoxUsers
