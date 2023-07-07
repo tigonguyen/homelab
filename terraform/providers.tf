@@ -18,5 +18,7 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url = "https://proxmox.scienista.com/api2/json"
+  pm_api_url  = "https://pve.scienista.com/api2/json"
+  pm_user     = var.proxmoxUser
+  pm_password = var.proxmoxPassword
 }
